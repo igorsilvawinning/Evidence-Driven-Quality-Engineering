@@ -1,0 +1,27 @@
+{
+  "info": {
+    "name": "<product> — validation",
+    "description": "HTTP requests for the traceability matrix. Folders follow the stages in inventory/traceability-matrix.md. The matching automated test, when one exists, lives in the repository. Do not store passwords or tokens in this collection.\n\nImport into any HTTP client. Set baseUrl.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:3000" }
+  ],
+  "item": [
+    {
+      "name": "Stage 1 — <name>",
+      "description": "QA-001. What this folder validates, in one sentence.",
+      "item": [
+        {
+          "name": "QA-001 <METHOD path>",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/<path>",
+            "description": "What this call validates and the expected status."
+          }
+        }
+      ]
+    }
+  ]
+}
