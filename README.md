@@ -1,49 +1,50 @@
-# Quality folder — template
+# Evidence-Driven Quality Engineering
 
-Copy this folder into a project and rename it `Q&A`. Fill the placeholders. Keep the method. Delete the examples that do not apply.
+A validation operating system. The center is evidence, not the test.
 
-The folder is the quality record for the whole development cycle. Finding a defect is one outcome. The others are: a business requirement is tied to evidence, every activity closes the same way, a risk that cannot be exercised yet has an impediment and a time, and the development process improves when the evidence shows a method gap.
+```text
+Requirement → QA-ID → Case → Execution → Evidence → Decision
+```
 
-## How to start
+The same chain reaches the code:
 
-1. Write the product's critical path as ordered stages in `inventory/traceability-matrix.md`. A later stage starts only after the previous one has evidence.
-2. Give each acceptance criterion an id: `QA-001`, `QA-002`, and so on.
-3. For the stage you are about to run, write the case in `cases/`.
-4. Run three channels whenever the product has a UI and an API: the automated test, the browser, and the HTTP collection.
-5. Store the result in `evidence/`. A screenshot without the id and the expected result does not count.
-6. Close the stage in `reports/`. If something failed, open a work item. Do not change product code in the middle of the proof.
-7. Before accepting the next stage, re-run the automated tests of the stages already closed.
+```text
+Requirement → Task → Commit → Pull request → Validation → Evidence → Release
+```
 
-The quality system, the activity map, and the closure standard are in `quality-system.md`.
+Copy this folder into a product. Fill the ids. Keep the chain. A decision without evidence does not close a stage.
+
+## What a row must be able to point at
+
+| Link | Example |
+|---|---|
+| Requirement | `requirements/feature-login.md` |
+| QA-ID | `QA-001` |
+| Task | the work-item id |
+| Commit | `abc123` |
+| Pull request | `#44` |
+| Test | `Login.spec.ts` |
+| Evidence | `evidence/stage-1/` |
+| Decision | `passed`, `failed`, `deferred`, or `implemented` |
+
+`implemented` means the code or the test file exists. It does not mean the behaviour was proved.
 
 ## Layout
 
 ```text
-Q&A/
-  README.md
-  quality-system.md
-  inventory/
-    traceability-matrix.md
-    next-steps.md
-  cases/
-    stage-1/
-      QA-001.md
-  evidence/
-    api/                  automated output and the HTTP collection
-    stage-1/              screenshots for that stage
-    journeys/
-    load/
-    security/
-    production/
-    usability/
-  reports/
-    template.md
+README.md
+quality-system.md
+requirements/          source text; an assistant drafts criteria, edges, risks, questions
+risks/                 RSK-nnn with impact, probability, priority
+inventory/             the matrix and the next stage
+cases/                 the human script for one QA-ID
+evidence/              proof: collection, screenshots, load, security, production
+reports/               a short decision. Tools produce the raw output; a person or an assistant writes the summary
 ```
 
-## File rules
+## Rules
 
-- The matrix id appears in the evidence file name and in the report.
-- Do not copy product source into this folder. Point at the test file path.
+- `deferred` is an artifact: impediment and the moment the proof becomes possible.
+- Re-run the automated proof of closed stages before the next stage is accepted.
 - Do not store passwords, tokens, or customer data.
-- `covered` means a test file exists. It does not mean the test was run or the requirement is accepted.
-- `deferred` requires an impediment and the moment the proof becomes possible.
+- Product code is not changed during a proof. A `failed` decision opens a work item.

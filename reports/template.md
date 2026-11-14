@@ -1,39 +1,22 @@
-# Validation report — `<stage or release>`
+# Decision — `<stage or release>`
 
 Date:
-Environment:
-Build or commit:
+Commit:
+Pull request:
+Decision: `passed` | `failed` | `deferred`
 
-## Summary
+The body is a synthesis of tool output. Cite the files. Do not paste full logs.
 
-| State | Rows |
-|---|---|
-| passed | |
-| failed | |
-| deferred | |
-
-## Criteria
-
-| Id | Clause or epic | Result | Evidence |
-|---|---|---|---|
-| QA-001 | | | |
-
-## What each channel showed
-
-- Automated:
-- Browser:
-- HTTP collection:
+| Id | Decision | Evidence |
+|---|---|---|
+| QA-001 | | `evidence/...` |
 
 ## Deferred
 
-| Item | Impediment | When it can be validated |
+| Item | Impediment | When |
 |---|---|---|
 | | | |
 
 ## Failures
 
-For each `failed`: what happened, what was expected, and the work item opened.
-
-## Out of this cycle
-
-Criteria still without evidence, and why (environment, missing case, or a session not yet scheduled).
+What happened, what was expected, work item id.
